@@ -62,7 +62,7 @@ class OccasionsController < ApplicationController
 
   def edit
       @occasion = Occasion.find(params[:id])
-      redirect_to root_path unless @occasion.user_id == @current_user.id ### AUTHORISATION FOR USERS
+      redirect_to root_path unless @occasion.user_id == @current_user.id || @current_user.admin?### AUTHORISATION FOR USERS
   end
 
   def update
@@ -84,7 +84,7 @@ class OccasionsController < ApplicationController
         occasion.destroy
         redirect_to root_path
       else
-        flash[:notice] = 'Admin Acces Only'
+        flash[:notice] = 'Admin Access Only'
         redirect_to root_path
       end
   end
