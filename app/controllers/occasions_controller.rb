@@ -6,8 +6,9 @@ class OccasionsController < ApplicationController
 
 
     # only use API if 6 hours since last fetch!
-    # last_occasion_fetched_at = Occasion.where(user_id: nil).order('created_at').last.created_at
-    # if last_occasion_fetched_at > 6.hours.ago
+    recent_occasions = Occasion.where(user_id: nil).where("created_at > ?", 24.hours.ago)
+    if recent_occasions.empty?
+      # only do the API call if there are no API-created occasions made within the last 24 hours
 
       ###############################
       # EVENTFINDA gem
@@ -24,6 +25,7 @@ class OccasionsController < ApplicationController
         end
         # Adding the data to our database and then checking if the id is there not to repeat the events
       end
+    end # end of API throttle if
 
   end
 
@@ -146,7 +148,7 @@ class OccasionsController < ApplicationController
     if  rsvp.present?
         rsvp.destroy
         response = {action: 'unrsvp', status: 'success'}
-        render json: response, :status => 200
+        render json: response, :status => 200   #
     else
         Rsvp.create occasion_id: occasion_id, user_id: user_id
         response = {action: 'rsvp', status: 'success'}
