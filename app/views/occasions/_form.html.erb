@@ -3,7 +3,7 @@
       <hgroup>
         <h1>New Event</h1>
       </hgroup>
-        <%= form_for @occasion, :html => {:multipart => true} do |f|%>
+        <%= form_for @occasion, :html => {:multipart => true} do |f|%><%#  we need :html => {:multipart => true} do |f| beacuse we are adding images with cloudinary %>
         <div class="group">
             <%= f.text_field :title %>
             <span class="highlight"></span><span class="bar"></span>

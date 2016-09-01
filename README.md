@@ -4,7 +4,7 @@ As a second project which is a group project, while attending General Assembly i
 
 In our event site you can find information about any event, it is possible to look for events by category, by location, by keyword and by date.
 
-Enjoy rhe site [event](https://eventsltx.herokuapp.com)
+Enjoy the site [event](https://eventsltx.herokuapp.com)
 
 ## Technologies used
 - Ruby
@@ -22,6 +22,7 @@ Enjoy rhe site [event](https://eventsltx.herokuapp.com)
 - Disqus
 - httparty
 - Postgres
+- Google API
 
 
 ## Future Additions
